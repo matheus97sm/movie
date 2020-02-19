@@ -11,7 +11,6 @@ const rotate = keyframes`
 `;
 
 export const Container = styled.div`
-  max-width: 960px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -24,9 +23,18 @@ export const Container = styled.div`
 `;
 
 export const List = styled.ul`
+  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   list-style: none;
+
+  @media screen and (min-width: 600px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media screen and (min-width: 1050px) {
+    grid-template-columns: repeat(6, 1fr);
+  }
 
   li {
     width: 100%;

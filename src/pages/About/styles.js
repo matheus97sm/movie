@@ -58,6 +58,12 @@ export const MovieCard = styled.div`
       width: 50%;
     }
   }
+
+  @media screen and (min-width: 1050px) {
+    header img {
+      width: 30%;
+    }
+  }
 `;
 
 export const Details = styled.div`
@@ -75,6 +81,10 @@ export const Details = styled.div`
       margin-right: 2px;
     }
   }
+
+  @media screen and (min-width: 1050px) {
+    width: 65%;
+  }
 `;
 
 export const FavorityButton = styled.button`
@@ -83,6 +93,7 @@ export const FavorityButton = styled.button`
   align-items: center;
   border: none;
   background-color: transparent;
+  color: ${props => props.favority && '#00a6ff'};
 
   svg {
     margin-right: 8px;

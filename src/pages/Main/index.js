@@ -12,6 +12,8 @@ export default class Main extends Component {
     this.state = {
       films: [],
       loading: false,
+      page: 1,
+      totalPages: 0,
     };
   }
 
@@ -27,8 +29,38 @@ export default class Main extends Component {
     this.setState({
       films: [...films, ...response.data.results],
       loading: false,
+      page: 2,
+      totalPages: response.data.total_pages,
     });
+
+    window.addEventListener('scroll', this.scrollLoad);
   }
+
+  scrollLoad = async () => {
+    if (window.scrollY === document.body.clientHeight - window.innerHeight) {
+      const { films, page, totalPages } = this.state;
+
+      if (page <= totalPages) {
+        this.setState({
+          loading: true,
+        });
+
+        window.removeEventListener('scroll', this.scrollLoad);
+
+        const response = await api.get(`/4/list/1?page=${page}&language=pt-BR`);
+
+        this.setState({
+          films: [...films, ...response.data.results],
+          loading: false,
+          page: page + 1,
+        });
+
+        window.addEventListener('scroll', this.scrollLoad);
+      } else {
+        window.removeEventListener('scroll', this.scrollLoad);
+      }
+    }
+  };
 
   render() {
     const { films, loading } = this.state;

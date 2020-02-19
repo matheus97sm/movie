@@ -161,9 +161,13 @@ export default class About extends Component {
               </Details>
             </header>
             <article>
-              <FavorityButton onClick={this.saveFavority}>
+              <FavorityButton onClick={this.saveFavority} favority={favority}>
                 {favority ? <FaHeart size="20" /> : <FaRegHeart size="20" />}
-                <span>Adicionar aos favoritos</span>
+                {favority ? (
+                  <span>Remover dos favoritos</span>
+                ) : (
+                  <span>Adicionar aos favoritos</span>
+                )}
               </FavorityButton>
 
               <Resume>{movie.overview}</Resume>

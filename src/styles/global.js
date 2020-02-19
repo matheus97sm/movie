@@ -28,4 +28,10 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  @media screen and (min-width: 1050px) {
+    body {
+        padding-bottom: 88px;
+    }
+  }
 `;
