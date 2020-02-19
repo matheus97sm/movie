@@ -36,6 +36,10 @@ export const List = styled.ul`
     grid-template-columns: repeat(6, 1fr);
   }
 
+  @media screen and (min-width: 1450px) {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
   li {
     width: 100%;
 
