@@ -48,7 +48,7 @@ export default class About extends Component {
     // verificar se já é favorito
     const hasFavority = JSON.parse(localStorage.getItem('favorities'));
 
-    if (hasFavority.find(index => index === movieId)) {
+    if (hasFavority && hasFavority.find(index => index === movieId)) {
       this.setState({
         favority: true,
       });

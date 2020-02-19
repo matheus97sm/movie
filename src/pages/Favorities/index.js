@@ -12,6 +12,7 @@ export default class Favorities extends Component {
     this.state = {
       films: [],
       loading: true,
+      empty: true,
     };
   }
 
@@ -19,7 +20,7 @@ export default class Favorities extends Component {
     // verificar se existe favoritos
     const hasFavority = JSON.parse(localStorage.getItem('favorities'));
 
-    if (hasFavority[0]) {
+    if (hasFavority) {
       hasFavority.forEach(async favority => {
         const { films } = this.state;
 
@@ -31,18 +32,32 @@ export default class Favorities extends Component {
 
         this.setState({
           loading: false,
+          empty: false,
         });
+      });
+    } else {
+      this.setState({
+        loading: false,
       });
     }
   }
 
   render() {
-    const { films, loading } = this.state;
+    const { films, loading, empty } = this.state;
 
     if (loading) {
       return (
         <Container>
           <FaSpinner color="#00a6ff" size="24" />
+        </Container>
+      );
+    }
+    if (empty) {
+      return (
+        <Container>
+          <h2 style={{ marginTop: '30px', width: '90%', textAlign: 'center' }}>
+            Você ainda não possui favoritos... :(
+          </h2>
         </Container>
       );
     }
