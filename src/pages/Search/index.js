@@ -51,7 +51,10 @@ export default class Search extends Component {
   };
 
   scrollLoad = async () => {
-    if (window.scrollY === document.body.clientHeight - window.innerHeight) {
+    if (
+      window.scrollY + 100 >=
+      document.body.clientHeight - window.innerHeight
+    ) {
       const { films, page, totalPages, search } = this.state;
 
       if (page <= totalPages) {
